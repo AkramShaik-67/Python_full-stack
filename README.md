@@ -1,276 +1,140 @@
-# Python_fullstack12
+# python_fullstack_1
+ctrl+j
 git add .
 git commit -m "html"
 git push
-CSS Selectors
-Colors & Fonts
-Box Model
-Flexbox
-Grid
-Responsive Design
-Bootstrap (Introduction)
-
-
-https://github.com/SriramMurugesan/Python_fullstack12
-
-https://meet.google.com/vfd-wqaa-huy
-
-
-git add .
-git commit -m "eventlistners"
-git push
-
-localhost:5500
-
-
-DNS-Domain Name Server
-Api-Application Programming Interface->Stands between frontend and backend
-Middleware - stands as security check for request and response
-Authorization vs Authentication
-authentication tells who are you eg: normal login
-authorization tells what you can able to do eg:staff and students
-react- web framework for frontend development in javascript
-flask,fastapi,django- web framework for backend development in python
-orm- object relational mapping, it is a technique that allows you to query and manipulate data from a database.
-
-python3 -m venv env
-
-. env/bin/activate   --github codespace
-
-python -m venv env 
-env\Scripts\activate --- windows direct vs code 
-
-     
-pip install flask
-pip freeze > requirements.txt
-pip install -r requirements.txt
-
-
-. env/bin/activate
-(env) billa@EliteBook:~/Sriram_repos/Python_fullstack12 % python3 app.py
-python3 app.py
-
-
-lsof -i :5000
-kill -9 12345
 
 
 
+gmeet code - wdyiijnhat
 
 
-# SQL Basics
-dbms-->database management system
-rdbms-relational database management system
-## constraints
---> Primary key eg:Student_ID
--->Foreign key eg:Department_ID
--->Unique Key eg:Email_ID
--->Not null eg:Name
--->Default value eg:status default 'Pending'
--->Check constraint eg:Age > 18
--->Auto increment eg:ID auto increment
 
-## DDL 
-create
-truncate
-drop
+https://github.com/SriramMurugesan/python_fullstack_1
 
-## DML
-insert
-update
-delete
+# html->hyper text markup language
+structure of the web page
+# css->cascading style sheet
+giving design and cosmetics to your web page
+# js->javascript
+bring the functionality to your web page
+# python-> backend
+creates api and backend logics will be created here
+# SQL 
 
-## DCL
-grant
-revoke
+DB- postgresql, mariadb, mysql,oracle
 
-## TCL
-commit
-rollback
-savepoint
-
-## DQL
-SELECT
-
-## CRUD
-create-->insert
-retrieve-->select
-update-->update
-delete-->delete
-
-## SQL Commands
-select * from table_name;
-select one_column from table_name;
-select one,two_column from table_name;
-
-## filtering
-select column_name from table_name where condition;
- eg:select * from customers where country='USA';
-## logical operators
-and
-or
-not
-
-## comparison operators
-==
-!=
->
-<
->=
-<=
-
-## in,not in,between
-select column_name from table_name where column_name in (value1,value2,value3);
+https://www.sqltutorial.org/playground/
 
 
-## like 
-select column_name from table_name where column_name like '%a_'
 
-## distinct
-display unique values
-select distinct column_name from table_name;
+https://www.kaggle.com/learn/python
 
-## order by
-select column_name from table_name order by column_name asc/desc;
+# constraints 
+1. Primary key -- Roll no(unique value and should not be null)
 
-## aggregate functions
-avg()-->average
-sum()-->sum of values
-count()-->count of values
-min()-->minimum value
-max()-->maximum value
+2. Foreign key -- relationship between tables(primary key of another table)
 
-## filtering after aggregrate function
-having
-select min(column_name) from table_name group by column_name having min(column_name) > 10;
+3. Not null
 
-## joins
-left join
-right join
-inner join
-full outer join
-cross join-cartesian product of two tables
+4. Unique
 
-select d.department_name,e.employee_name from employees e inner join departments d on e.department_id = d.department_id;
+5. Check
+
+6. Default 
+
+ # DDL - Data Definition Language-> structure of table
+create, alter, drop, truncate
+# DML - Data Manipulation Language-> data manipulation  
+insert, update, delete
+# DCL - Data Control Language-> security permissions
+revoke, grant
+# TCL - Transaction Control Language-> transaction
+commit, rollback
+# DQL - Data Query Language-> query
+select
+
+# DDL - commands(practice)
+--create table student(student_id int primary key, name varchar(50), email varchar(50), branch varchar(10));
+
+--create table branch (branch_id int primary key, branch_name varchar(50));
+
+--alter table branch rename to departments
+
+--alter table students rename column branch to branch_id;
+
+--alter table students column branch_id type int;
+
+--alter table students add constraint constraint_name foreign key(branch_id) references departments(branch_id);
+
+drop table students;
+
+truncate table students;
+
+# DML - commands(practice)
+--insert into departments(branch_id, branch_name) values(1, 'Computer Science');
+
+--insert into students(student_id, name, email, branch_id) values(1, 'John', 'john@example.com', 1);
+
+update students set name = 'John' where student_id = 1;
+
+delete from students where student_id = 1;
+
+# questions fro employee database
+-- select * from employees where salary >20000;
+-- select * from employees where department_id=10;
+-- select first_name , last_name from employees where salary <10000;
+select * from employees where manager_id is not null ; 
+-- return employees who have salry greater than 20000
+-- return whose department id is 10
+-- return first name and last name of employees whose salary less than 10000
+-- return employees whose manager_id is null
+# and or not
+select * from employees where salary >50000 and department_id=10;
+-- return employees who have salary greater than 50000 and department id is 10
+select * from employees where salary >50000 or department_id=10;
+-- return employees who have salary greater than 50000 or department id is 10
+select * from employees where salary >50000 and department_id not in (10,20,30);
+-- return employees who have salary greater than 50000 and not in 10 dept 
+# in not in
+select * from employees where department_id in (10,20,30);
+select * from employees where department_id not in (10,20,30);
+-- return emplyoees whose dept id are 10,20,30
+-- return emplyoees whose dept id are not in 10,20,30
+# pattern matching
+select * from employees where first_name like 'A%';
+select * from employees where first_name like '%A';
+select * from employees where first_name like '%A%';
+-- return employees whose name starts with A
+-- return employees whose name ends with A
+-- return employees whose name contains A
+
+# sort and ordering
+select * from employees order by salary asc;
+select * from employees order by salary desc;
+-- return employees sorted by salary in ascending order
+-- return employees sorted by salary in descending order
+# count , sum, avg, min, max
+select count(*) from employees;
+select count(*) from employees group by department_id;
+select count(*) from employees group by department_id order by count(*) desc;
+-- return count of employees
+-- return count of employees in each department
+-- return count of employees in each department and order by count in descending order
+# Group by and having
+select count(*) from employees group by department_id having count(*) > 1;
+-- return count of employees in each department and order by count in descending order
+select * from employees where department_id in (select department_id from employees group by department_id having count(*) > 1);
+-- return count of employees in each department and order by count in descending order and salary greater than 50000
+
+## Joins 
+# inner join
+select * from employees join departments on employees.department_id = departments.department_id;
+select * from employees join departments on employees.department_id = departments.department_id where salary >50000;
+-- return employees with their department names
+-- return employees with their department names and salary greater than 50000
 
 
-# SELECT
-Display all customers.
-Display only first_name and last_name from Customers.
-Display first_name, age, and country.
-
-# WHERE
-Find customers who are from the USA.
-Find customers whose age is 22.
-Find customers older than 25.
-Find orders where the amount is greater than 500.
-
-# AND / OR
-Find customers from the UK whose age is greater than 20.
-Find customers who are from USA or UAE.
-Find customers whose age is 22 or 28.
-
-# BETWEEN / IN
-Find customers whose age is between 22 and 30.
-Find customers whose country is USA or UK using IN.
-Find orders whose amount is between 300 and 1000.
-
-# LIKE
-Find customers whose first name starts with J.
-Find customers whose last name contains o.
-Find customers whose first name ends with t.
-
-# DISTINCT
-Display all unique countries.
-Display all unique order items.
-
-# ORDER BY
-Display customers sorted by age from youngest to oldest.
-Display orders sorted by amount from highest to lowest.
-
-# Aggregate Functions
-Find the total number of customers.
-Find the average age of customers.
-Find the highest order amount.
-Find the total amount of all orders.
-
-# GROUP BY
-Count the number of customers in each country.
-Count how many orders exist for each item.
-Find the total order amount for each item.
-
-# JOIN
-Display the customer's first name along with the item they ordered.
-Display the customer's first name and shipping status.
-Display customer name, item, order amount, and shipping status together using JOINs.
-
-
-# steps for flask full stack development
-'''
-1.create repo from github
-(in local system)
-2.git clone <repo_url>
-3.".gitignore file will remove unwanted files, mandatory gitignore entries are env,*.pyc,.env"
-4.python3 -m venv env
-5. . env/bin/activate
-6.pip install flask
-7.pip freeze > requirements.txt
-8.pip install -r requirements.txt
-
-9.create templates(for all html pages) and static(for css,js,images,audio,video,other files etc) folders
-10.create routes and render templates in app.py
-11.create api endpoints in app.py
-12.end points are follows
-/login--> login page
-/register --> register page
-13.while register user details will store in db(which is sqlite3 in future it can be changed to mysql)
-14.logout --> logout redirect to login page
-15./api/register--> for checking duplicate user_email before registration process and if user_email is not duplicate then it will store user details in db
-16./api/login--> for checking user_email and password and if user_email and password are correct then it will return home page parallely manage sessions (means login status of user in db)and if user_email and password are incorrect then it will return error message
-17./logout --> for logging out user and removing session
-
-18.python3 app.py
-19.after completing git push commands
-20.git add .
-21.git commit -m "commit message"
-22.git push
-'''
-# imported methods and classes
-Flask - core functionality of web framework
-render_template - for rendering html pages
-request - for handling incoming http requests
-session - for managing user sessions
-jsonify - return message in json format
-redirect - for redirecting to another route
-url_for - for creating urls for the routes
-
-# database
-sqlite3 - relational database management system
-cursor - database cursor 
-commit - save the changes in database
-close - close the database connection
-
-# rest api methods
-rest - representational state transfer
-methods:
-
-GET - Used to retrieve data from the server.
-
-POST - Used to send data to the server to create a new resource.
-
-PUT - Used to update an existing resource entirely.
-
-PATCH - Used to partially update an existing resource.
-
-DELETE - Used to delete a resource from the server.
-
-# status codes
-200 OK
-201 Created
-204 No Content
-400 Bad Request
-401 Unauthorized
-403 Forbidden
-404 Not Found
-500 Internal Server Error
-503 Service Unavailable
+create env: python3 -m venv env
+activate env: . env/bin/activate
+deactivate env: deactivate
