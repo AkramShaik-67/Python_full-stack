@@ -88,6 +88,13 @@ def api_login():
         return jsonify({"message": "Login successful"}), 200
     else:
         return jsonify({"message": "Invalid email or password"}), 401
+@app.route("/logout")
+def logout():
+    session.pop("user_id",None)
+    session.pop("user_name",None)
+    session.pop("user_email",None)
+    return redirect(url_for("login"))
+
     
 if __name__=="__main__":
     app.run(debug=True)
