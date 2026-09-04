@@ -106,6 +106,19 @@ def api_tasks():
     tasks=cursor.fetchall()
     conn.close()
     return jsonify([dict(row) for row in tasks])
+
+@app.route("/api/tasks",methods=["POST"])
+def api_add_tasks():
+    data = request.get_json
+    title = data.get("title")
+    discription = data.get("discription")
+
+    conn=get_db_connection()
+    cursor=conn.cursor()
+    cursor.execute("INSERT INTO task (title, dicription, status) VALUES (?, ? 'pending')",(title, discription))
+    conn.commit()
+    conn.close()
+    return jsonify({"message": " Task added successfully"}), 201
     
 if __name__=="__main__":
     app.run(debug=True)
