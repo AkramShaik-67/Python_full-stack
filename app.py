@@ -16,6 +16,7 @@ def init_db(): # Initialize the database (create tables if they don't exist)
     conn=get_db_connection()
     cursor=conn.cursor()
     cursor.execute("CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT,name TEXT NOT NULL, email TEXT NOT NULL, password TEXT NOT NULL,dob TEXT NOT NULL,gender TEXT NOT NULL,courses TEXT NOT NULL)")
+    cursor.execute("CREATE TABLE IF NOT EXISTS tasks (id INTEGER PRIMARY KEY AUTOINCREMENT,title TEXT NOT NULL,description TEXT NOT NULL,status TEXT NOT NULL)")
     conn.commit()
     conn.close()
 init_db()
@@ -96,6 +97,15 @@ def logout():
     session.pop("user_name", None)
     session.pop("user_email", None)
     return redirect(url_for("login"))
+
+@app.route("/api/tasks",methods=["GET"])
+def api_tasks():
+    conn=get_db_connection()
+    cursor=conn.cursor()
+    cursor.execute("SELECT * FROM tasks")
+    tasks=cursor.fetchall()
+    conn.close()
+    return jsonify([dict(row) for row in tasks])
     
 if __name__=="__main__":
     app.run(debug=True)
